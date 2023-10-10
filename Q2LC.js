@@ -16,32 +16,25 @@
 // - [1,2,2,1]
 // - [1,2,2,1]
 
-function countPairsWithDiffK(nums, k) {
-  const numCounts = new Map();
+const countKDifference = (nums, k) => {
+  const arrayOfPairs = [];
   let count = 0;
-
-  for (const num of nums) {
-    numCounts.set(num, (numCounts.get(num) || 0) + 1);
-  }
-
-  for (const [num, freq] of numCounts.entries()) {
-    if (k === 0) {
-      // For k = 0, count duplicates (pairs with the same element)
-      count += (freq * (freq - 1)) / 2;
-    } else if (k > 0 && numCounts.has(num + k)) {
-      count++;
+  
+  for (let i = 0; i < nums.length; i++){
+    for (let j = i + 1; j < nums.length; j++){
+      const absoluteDiff = Math.abs(nums[i] - nums[j]);
+      if(absoluteDiff === k){
+        arrayOfPairs.push([nums[i], nums[j]]);
+        count++;
+      }
+      
     }
   }
-
   return count;
-}
+  }
 
-// Example usage:
-const nums1 = [3, 2, 1, 5, 4];
-const k1 = 2;
-console.log(countPairsWithDiffK(nums1, k1)); // Output: 3
-
-const nums2 = [1, 2, 2, 1];
-const k2 = 1;
-console.log(countPairsWithDiffK(nums2, k2)); // Output: 4
+const nums = [3, 2, 1, 5, 4];
+const k = 2;
+const answer = countKDifference(nums, k);
+console.log(answer);
 
