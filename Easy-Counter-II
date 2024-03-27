@@ -1,0 +1,26 @@
+const createCounter = (init) => {
+  let counter = init;
+
+  return(
+    {
+    increment: () => {
+      
+      return(++counter);
+
+    },
+    decrement: () => {
+      return(--counter);
+    },
+    reset: () => {
+      return(counter);
+    }
+  }
+  )
+}
+
+const counter = createCounter(5);
+counter.increment();
+console.log(createCounter(5).increment());
+console.log(createCounter(5).reset());
+console.log(createCounter(5).decrement());
+
